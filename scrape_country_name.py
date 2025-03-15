@@ -7,7 +7,7 @@ print("script started >>>")
 # laoding the excel file
 df = pd.read_excel("D:/workbench/faolex_playwright/File.xlsx")
 
-def scrape_country_name(url):
+def scrape_country_date(url):
     with sync_playwright() as p:
         browser = p.chromium.launch()  # Or p.firefox.launch() or p.webkit.launch()
         page = browser.new_page()
@@ -34,7 +34,7 @@ def scrape_country_name(url):
         browser.close()
 
 # applying the function to each row
-df["Country, Date"] = df["Links"].apply(scrape_country_name)
+df["Country, Date"] = df["Links"].apply(scrape_country_date)
 
 # save the updated data to a new excel file
 df.to_excel("D:/workbench/faolex_playwright/file_updated.xlsx", index = False)
